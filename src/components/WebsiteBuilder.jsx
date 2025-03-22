@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import ImagePlaceholder from "../assets/image-placeholder.png";
-import { components } from "../constant/components";
 import { getDefaultContent } from "../constant/getDefaultContent";
 import { getDefaultStyle } from "../constant/getDefaultStyle";
 import { stylesToTailwind } from "../constant/stylesToTailwind";
 import { generateHtml } from "../constant/generateHtml";
 import RenderExportModal from "./RenderExportModal";
 import RenderPropertiesPanel from "./RenderPropertiesPanel";
+import RenderElement from "./RenderElement";
+import ComponentToolbar from "./ComponentToolbar";
 
 const WebsiteBuilder = () => {
   const [elements, setElements] = useState([]);
@@ -130,86 +131,10 @@ const WebsiteBuilder = () => {
     setShowExportModal(true);
   };
 
-  // Copy HTML to clipboard
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(htmlOutput);
-    alert("HTML copied to clipboard!");
-  };
-
-  // Render element based on type
-  const renderElement = (element) => {
-    const { id, type, content, style, x, y, src, alt } = element;
-    const elementStyle = {
-      ...style,
-      left: `${x}px`,
-      top: `${y}px`,
-      cursor: draggingId === id ? "grabbing" : "grab",
-      userSelect: "none",
-    };
-
-    const isSelected = selectedElement && selectedElement.id === id;
-
-    if (isSelected) {
-      elementStyle.outline = "2px solid #2563eb";
-      elementStyle.zIndex = 10;
-    } else {
-      elementStyle.zIndex = 1;
-    }
-
-    const commonProps = {
-      style: elementStyle,
-      onClick: (e) => handleElementClick(e, id),
-      onMouseDown: (e) => handleElementDragStart(e, id),
-    };
-
-    switch (type) {
-      case "heading":
-        return <h2 {...commonProps}>{content}</h2>;
-      case "paragraph":
-        return <p {...commonProps}>{content}</p>;
-      case "button":
-        return <button {...commonProps}>{content}</button>;
-      case "image":
-        return (
-          <img
-            src={src || ImagePlaceholder}
-            alt={alt || "Placeholder image"}
-            {...commonProps}
-          />
-        );
-      case "container":
-        return <div {...commonProps}></div>;
-      case "video":
-        return (
-          <div {...commonProps}>
-            <div className="flex items-center justify-center h-full text-gray-500">
-              Video Placeholder
-            </div>
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
     <div className="flex h-screen">
       {/* Left sidebar - Component Toolbar */}
-      <div className="w-48 bg-gray-100 border-r border-gray-200 p-4">
-        <h2 className="font-bold mb-4">Components</h2>
-        <div className="space-y-2">
-          {components.map((component) => (
-            <div
-              key={component.type}
-              draggable
-              onDragStart={(e) => handleDragStart(e, component.type)}
-              className="p-2 bg-white border border-gray-300 rounded cursor-move hover:bg-gray-50"
-            >
-              {component.label}
-            </div>
-          ))}
-        </div>
-      </div>
+      <ComponentToolbar handleDragStart={handleDragStart}/>
 
       {/* Center - Canvas */}
       <div
@@ -219,23 +144,31 @@ const WebsiteBuilder = () => {
         onDragOver={handleDragOver}
         onClick={handleCanvasClick}
       >
-        {elements.map((element) => renderElement(element))}
+        {elements.map((element) => (
+          <RenderElement
+            element={element}
+            draggingId={draggingId}
+            selectedElement={selectedElement}
+            handleElementClick={handleElementClick}
+            handleElementDragStart={handleElementDragStart}
+            ImagePlaceholder={ImagePlaceholder}
+          />
+        ))}
       </div>
 
       {/* Right sidebar - Properties */}
-        <RenderPropertiesPanel
-          handleExport={handleExport}
-          selectedElement={selectedElement}
-          elements={elements}
-          setElements={setElements}
-          setSelectedElement={setSelectedElement}
-        />
+      <RenderPropertiesPanel
+        handleExport={handleExport}
+        selectedElement={selectedElement}
+        elements={elements}
+        setElements={setElements}
+        setSelectedElement={setSelectedElement}
+      />
 
       {/* Export Modal */}
       <RenderExportModal
         showExportModal={showExportModal}
         setShowExportModal={setShowExportModal}
-        copyToClipboard={copyToClipboard}
         htmlOutput={htmlOutput}
       />
     </div>
