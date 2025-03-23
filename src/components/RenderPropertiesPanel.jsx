@@ -1,6 +1,5 @@
-
 import RenderTypeSpecificFields from "./RenderTypeSpecificFields";
-
+import { useState } from "react";
 // Properties panel for editing selected element
 const RenderPropertiesPanel = ({
   handleExport,
@@ -9,11 +8,30 @@ const RenderPropertiesPanel = ({
   setElements,
   setSelectedElement,
 }) => {
+  const [toggleShow, setToggleShow] = useState(true);
+
   if (!selectedElement)
     return (
-      <div className="w-64 bg-gray-100 border-l border-gray-200">
-        <div className="p-4">
-          <p className="mb-4">Select an element to edit its properties</p>
+      <div
+        className="w-80 bg-slate-50 border-r border-gray-200 p-3 fixed top-0 right-0 h-full transition-transform duration-300"
+        style={{
+          zIndex: 100,
+          transform: toggleShow ? "translateX(0)" : "translateX(100%)",
+        }}
+      >
+        <div>
+          {/* Toggle Button */}
+          <button
+            onClick={() => setToggleShow((curr) => !curr)}
+            className="bg-blue-900 text-white cursor-pointer w-8 h-8 shadow-lg absolute right-80 rounded top-0 transition-all duration-300"
+          >
+            <i
+              className={`fa-solid ${toggleShow ? "fa-eye-slash" : "fa-eye"}`}
+            ></i>
+          </button>
+          <p className="mb-4 text-center">
+            Select an element to edit its properties
+          </p>
           <button
             onClick={handleExport}
             className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
@@ -23,13 +41,27 @@ const RenderPropertiesPanel = ({
         </div>
       </div>
     );
-    
+
   return (
-    <div className="w-64 bg-gray-100 border-l border-gray-200">
-      <div className="p-4">
+    <div
+      className="w-80 bg-slate-50 border-r border-gray-200 p-3 fixed top-0 right-0 h-full transition-transform duration-300"
+      style={{
+        zIndex: 100,
+        transform: toggleShow ? "translateX(0)" : "translateX(100%)",
+      }}
+    >
+      <div>
+        <button
+          onClick={() => setToggleShow((curr) => !curr)}
+          className="bg-blue-900 text-white cursor-pointer w-8 h-8 shadow-lg absolute right-80 rounded top-0 transition-all duration-300"
+        >
+          <i
+            className={`fa-solid ${toggleShow ? "fa-eye-slash" : "fa-eye"}`}
+          ></i>
+        </button>
         <h3 className="text-lg font-medium mb-4">Properties</h3>
 
-        {!['image', 'video'].includes(selectedElement.type) && (
+        {!["image", "video"].includes(selectedElement.type) && (
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Content</label>
             <input
