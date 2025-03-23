@@ -40,7 +40,7 @@ const generateHtml = (elements, stylesToTailwind) => {
         html += `    <div class="${tailwindClasses}" ${positionStyle}></div>\n`;
         break;
       case "video":
-        html += `    <div class="${tailwindClasses}" ${positionStyle}>Video Placeholder</div>\n`;
+        html += `    <video src="${src}" class="${tailwindClasses}" ${positionStyle}>\n`;
         break;
     }
   });

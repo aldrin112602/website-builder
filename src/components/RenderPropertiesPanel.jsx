@@ -1,4 +1,5 @@
-import RenderTypeSpecificFields from "./renderTypeSpecificFields";
+
+import RenderTypeSpecificFields from "./RenderTypeSpecificFields";
 
 // Properties panel for editing selected element
 const RenderPropertiesPanel = ({
@@ -28,7 +29,7 @@ const RenderPropertiesPanel = ({
       <div className="p-4">
         <h3 className="text-lg font-medium mb-4">Properties</h3>
 
-        {selectedElement.type !== "container" && (
+        {!['image', 'video'].includes(selectedElement.type) && (
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Content</label>
             <input

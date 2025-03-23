@@ -1,3 +1,4 @@
+
 // Render element based on type
 const RenderElement = ({
   element,
@@ -6,6 +7,7 @@ const RenderElement = ({
   handleElementClick,
   handleElementDragStart,
   ImagePlaceholder,
+  VideoPlaceholder,
 }) => {
   const { id, type, content, style, x, y, src, alt } = element;
   const elementStyle = {
@@ -34,6 +36,8 @@ const RenderElement = ({
   switch (type) {
     case "heading":
       return <h2 {...commonProps}>{content}</h2>;
+      case "text":
+        return <span {...commonProps}>{content}</span>;
     case "paragraph":
       return <p {...commonProps}>{content}</p>;
     case "button":
@@ -50,11 +54,10 @@ const RenderElement = ({
       return <div {...commonProps}></div>;
     case "video":
       return (
-        <div {...commonProps}>
-          <div className="flex items-center justify-center h-full text-gray-500">
-            Video Placeholder
-          </div>
-        </div>
+        <video
+          src={src || VideoPlaceholder}
+          {...commonProps}
+        />
       );
     default:
       return null;

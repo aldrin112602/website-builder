@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import ImagePlaceholder from "../assets/image-placeholder.png";
+import VideoPlaceholder from "../assets/Video-Placeholder.mp4";
 import { getDefaultContent } from "../constant/getDefaultContent";
 import { getDefaultStyle } from "../constant/getDefaultStyle";
 import { stylesToTailwind } from "../constant/stylesToTailwind";
@@ -47,7 +48,7 @@ const WebsiteBuilder = () => {
         ...(type === "image"
           ? { src: ImagePlaceholder, alt: "Placeholder image" }
           : {}),
-        ...(type === "video" ? { src: "" } : {}),
+        ...(type === "video" ? { src: VideoPlaceholder } : {}),
       };
 
       setElements([...elements, newElement]);
@@ -152,6 +153,7 @@ const WebsiteBuilder = () => {
             handleElementClick={handleElementClick}
             handleElementDragStart={handleElementDragStart}
             ImagePlaceholder={ImagePlaceholder}
+            VideoPlaceholder={VideoPlaceholder}
           />
         ))}
       </div>
