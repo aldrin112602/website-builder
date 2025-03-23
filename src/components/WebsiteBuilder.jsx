@@ -139,7 +139,7 @@ const WebsiteBuilder = () => {
       {/* Center - Canvas */}
       <div
         ref={canvasRef}
-        className="flex-1 bg-white overflow-auto relative"
+        className="flex-1 bg-white overflow-auto relative w-auto"
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onClick={handleCanvasClick}
