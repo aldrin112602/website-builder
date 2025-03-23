@@ -2,13 +2,15 @@
 const getDefaultContent = (type) => {
   switch (type) {
     case "heading":
-      return "Lorem ipsum dolor sit amet";
+      return "Heading";
     case "text":
-      return "Lorem ipsum dolor sit amet";
+      return "Text";
+      case "link":
+        return "Link";
     case "paragraph":
-      return "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+      return "Paragraph";
     case "button":
-      return "Lorem ipsum dolor sit amet";
+      return "Button";
     case "image":
       return "";
     case "container":

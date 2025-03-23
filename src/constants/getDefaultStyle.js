@@ -9,15 +9,19 @@ const getDefaultStyle = (type) => {
         fontSize: "24px",
         fontWeight: "bold",
         color: "#111827",
-        fontFamily: "sans-serif",
       };
     case "paragraph":
       return {
         ...baseStyle,
         color: "#374151",
-        fontFamily: "sans-serif",
         fontSize: "16px",
       };
+      case "link":
+        return {
+          ...baseStyle,
+          color: "#374151",
+          fontSize: "16px",
+        };
     case "button":
       return {
         ...baseStyle,

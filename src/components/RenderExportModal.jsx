@@ -28,7 +28,7 @@ const RenderExportModal = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center p-4 z-200">
       <div className="bg-white rounded-lg w-full max-w-3xl max-h-screen overflow-hidden flex flex-col">
         <div className="flex justify-between items-center p-4 border-b border-slate-300">
           <h3 className="text-lg font-bold">Export HTML with Tailwind CSS</h3>

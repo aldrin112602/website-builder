@@ -1,4 +1,3 @@
-
 // Render element based on type
 const RenderElement = ({
   element,
@@ -9,9 +8,30 @@ const RenderElement = ({
   ImagePlaceholder,
   VideoPlaceholder,
 }) => {
-  const { id, type, content, style, x, y, src, alt } = element;
+  const {
+    id,
+    type,
+    content,
+    style,
+    x,
+    y,
+    src,
+    alt,
+    href,
+    target,
+    width,
+    height,
+    backgroundColor = "#999",
+    color = "#000",
+    fontSize,
+  } = element;
   const elementStyle = {
     ...style,
+    width,
+    height,
+    fontSize,
+    backgroundColor: type === "button" ? backgroundColor : "transparent",
+    color,
     left: `${x}px`,
     top: `${y}px`,
     cursor: draggingId === id ? "grabbing" : "grab",
@@ -36,8 +56,8 @@ const RenderElement = ({
   switch (type) {
     case "heading":
       return <h2 {...commonProps}>{content}</h2>;
-      case "text":
-        return <span {...commonProps}>{content}</span>;
+    case "text":
+      return <span {...commonProps}>{content}</span>;
     case "paragraph":
       return <p {...commonProps}>{content}</p>;
     case "button":
@@ -50,15 +70,16 @@ const RenderElement = ({
           {...commonProps}
         />
       );
+    case "link":
+      return (
+        <a href={href || "#"} target={target || "_self"} {...commonProps}>
+          {content}
+        </a>
+      );
     case "container":
       return <div {...commonProps}></div>;
     case "video":
-      return (
-        <video
-          src={src || VideoPlaceholder}
-          {...commonProps}
-        />
-      );
+      return <video src={src || VideoPlaceholder} {...commonProps} />;
     default:
       return null;
   }

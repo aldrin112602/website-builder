@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import ImagePlaceholder from "../assets/image-placeholder.png";
 import VideoPlaceholder from "../assets/Video-Placeholder.mp4";
-import { getDefaultContent } from "../constant/getDefaultContent";
-import { getDefaultStyle } from "../constant/getDefaultStyle";
-import { stylesToTailwind } from "../constant/stylesToTailwind";
-import { generateHtml } from "../constant/generateHtml";
+import { getDefaultContent } from "../constants/getDefaultContent";
+import { getDefaultStyle } from "../constants/getDefaultStyle";
+import { stylesToTailwind } from "../constants/stylesToTailwind";
+import { generateHtml } from "../constants/generateHtml";
 import RenderExportModal from "./RenderExportModal";
 import RenderPropertiesPanel from "./RenderPropertiesPanel";
 import RenderElement from "./RenderElement";
@@ -49,6 +49,7 @@ const WebsiteBuilder = () => {
           ? { src: ImagePlaceholder, alt: "Placeholder image" }
           : {}),
         ...(type === "video" ? { src: VideoPlaceholder } : {}),
+        ...(type === "link" ? { href: "#", target: "_self" } : {}),
       };
 
       setElements([...elements, newElement]);

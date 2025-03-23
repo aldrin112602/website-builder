@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { components } from "../constant/components";
+import { components } from "../constants/components";
 
 const ComponentToolbar = ({ handleDragStart }) => {
   const [toggleShow, setToggleShow] = useState(true);
