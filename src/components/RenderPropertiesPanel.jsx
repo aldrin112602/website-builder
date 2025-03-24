@@ -61,7 +61,7 @@ const RenderPropertiesPanel = ({
         </button>
         <h3 className="text-lg font-medium mb-4">Properties</h3>
 
-        {!["image", "video"].includes(selectedElement.elementType) && (
+        {!["image", "video", "input"].includes(selectedElement.elementType) && (
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Content</label>
             <input

@@ -1,7 +1,7 @@
 import Image from "./render_specific_elements/Image";
 import Link from "./render_specific_elements/Link";
 import Video from "./render_specific_elements/Video";
-
+import Input from "./render_specific_elements/Input";
 
 // Render different property fields based on element type
 const RenderTypeSpecificFields = ({

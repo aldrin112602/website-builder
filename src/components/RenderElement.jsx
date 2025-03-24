@@ -58,7 +58,7 @@ const RenderElement = ({
     case "heading":
       return <h2 {...commonProps}>{content}</h2>;
     case "input":
-      return <input type={type} value={content} {...commonProps} />;
+      return <input type={type} {...commonProps} />;
     case "text":
       return <span {...commonProps}>{content}</span>;
     case "paragraph":
