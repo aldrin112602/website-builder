@@ -1,4 +1,3 @@
-
 // Generate HTML output with Tailwind classes
 const generateHtml = (elements, stylesToTailwind) => {
   // Sort elements by position to maintain visual hierarchy
@@ -19,7 +18,8 @@ const generateHtml = (elements, stylesToTailwind) => {
 
   // Add each element
   sortedElements.forEach((element) => {
-    const { elementType, type, content, x, y, style, src, alt, href, target } = element;
+    const { elementType, type, content, x, y, style, src, alt, href, target } =
+      element;
     const positionStyle = `style="position: absolute; left: ${x}px; top: ${y}px;"`;
     const tailwindClasses = stylesToTailwind(elementType, style);
 
@@ -27,14 +27,17 @@ const generateHtml = (elements, stylesToTailwind) => {
       case "heading":
         html += `    <h2 class="${tailwindClasses}" ${positionStyle}>${content}</h2>\n`;
         break;
-        case "input":
-          html += `    <input type="${type}" class="${tailwindClasses}" ${positionStyle} value="${content}"/>\n`;
-          break;
-        case "link":
-          html += `    <a href="${href}" target="${target}" class="${tailwindClasses} underline" ${positionStyle}>${content}</a>\n`;
-          break;
+      case "input":
+        html += `    <input type="${type}" class="${tailwindClasses}" ${positionStyle} value="${content}"/>\n`;
+        break;
+      case "link":
+        html += `    <a href="${href}" target="${target}" class="${tailwindClasses} underline" ${positionStyle}>${content}</a>\n`;
+        break;
       case "paragraph":
         html += `    <p class="${tailwindClasses}" ${positionStyle}>${content}</p>\n`;
+        break;
+      case "textarea":
+        html += `    <textarea class="${tailwindClasses}" ${positionStyle}>${content}</textarea>\n`;
         break;
       case "button":
         html += `    <button class="${tailwindClasses}" ${positionStyle}>${content}</button>\n`;
