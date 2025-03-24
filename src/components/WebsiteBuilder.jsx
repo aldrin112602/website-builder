@@ -21,17 +21,17 @@ const WebsiteBuilder = () => {
   const canvasRef = useRef(null);
 
   // Handle drag start from toolbar
-  const handleDragStart = (e, type) => {
-    e.dataTransfer.setData("elementType", type);
+  const handleDragStart = (e, elementType) => {
+    e.dataTransfer.setData("elementType", elementType);
   };
 
   // Handle drop on canvas for new elements from toolbar
   const handleDrop = (e) => {
     e.preventDefault();
-    const type = e.dataTransfer.getData("elementType");
+    const elementType = e.dataTransfer.getData("elementType");
 
-    // Only proceed if we have a type (means it was dragged from toolbar)
-    if (type) {
+    // Only proceed if we have a elementType (means it was dragged from toolbar)
+    if (elementType) {
       const rect = canvasRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -39,17 +39,17 @@ const WebsiteBuilder = () => {
       // Create new element
       const newElement = {
         id: nextId,
-        type,
+        elementType,
         x,
         y,
-        content: getDefaultContent(type),
-        style: getDefaultStyle(type),
-        // Add specific properties for different element types
-        ...(type === "image"
+        content: getDefaultContent(elementType),
+        style: getDefaultStyle(elementType),
+        // Add specific properties for different element elementTypes
+        ...(elementType === "image"
           ? { src: ImagePlaceholder, alt: "Placeholder image" }
           : {}),
-        ...(type === "video" ? { src: VideoPlaceholder } : {}),
-        ...(type === "link" ? { href: "#", target: "_self" } : {}),
+        ...(elementType === "video" ? { src: VideoPlaceholder } : {}),
+        ...(elementType === "link" ? { href: "#", target: "_self" } : {}),
       };
 
       setElements([...elements, newElement]);

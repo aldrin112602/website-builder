@@ -26,9 +26,9 @@ const ComponentToolbar = ({ handleDragStart }) => {
         <div className="space-y-1">
           {components.map((component) => (
             <div
-              key={component.type}
+              key={component.elementType}
               draggable
-              onDragStart={(e) => handleDragStart(e, component.type)}
+              onDragStart={(e) => handleDragStart(e, component.elementType)}
               className="flex items-center justify-start gap-3 px-2 bg-white border border-gray-300 rounded cursor-move hover:bg-gray-50"
             >
               <i className={component.icon}></i>

@@ -1,6 +1,6 @@
 // Get default content based on element type
-const getDefaultContent = (type) => {
-  switch (type) {
+const getDefaultContent = (elementType) => {
+  switch (elementType) {
     case "heading":
       return "Heading";
     case "text":

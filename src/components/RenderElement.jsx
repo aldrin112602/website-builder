@@ -1,4 +1,4 @@
-// Render element based on type
+// Render element based on elementType
 const RenderElement = ({
   element,
   draggingId,
@@ -10,7 +10,8 @@ const RenderElement = ({
 }) => {
   const {
     id,
-    type,
+    type='text',
+    elementType,
     content,
     style,
     x,
@@ -30,7 +31,7 @@ const RenderElement = ({
     width,
     height,
     fontSize,
-    backgroundColor: type === "button" ? backgroundColor : "transparent",
+    backgroundColor: elementType === "button" ? backgroundColor : "transparent",
     color,
     left: `${x}px`,
     top: `${y}px`,
@@ -53,9 +54,11 @@ const RenderElement = ({
     onMouseDown: (e) => handleElementDragStart(e, id),
   };
 
-  switch (type) {
+  switch (elementType) {
     case "heading":
       return <h2 {...commonProps}>{content}</h2>;
+    case "input":
+      return <input type={type} value={content} {...commonProps} />;
     case "text":
       return <span {...commonProps}>{content}</span>;
     case "paragraph":

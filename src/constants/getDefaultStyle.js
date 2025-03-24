@@ -1,8 +1,8 @@
 // Get default style based on element type
-const getDefaultStyle = (type) => {
+const getDefaultStyle = (elementType) => {
   const baseStyle = { position: "absolute" };
 
-  switch (type) {
+  switch (elementType) {
     case "heading":
       return {
         ...baseStyle,
@@ -10,6 +10,12 @@ const getDefaultStyle = (type) => {
         fontWeight: "bold",
         color: "#111827",
       };
+      case "input":
+        return {
+          ...baseStyle,
+          color: "#374151",
+          fontSize: "16px",
+        };
     case "paragraph":
       return {
         ...baseStyle,

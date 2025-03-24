@@ -19,14 +19,17 @@ const generateHtml = (elements, stylesToTailwind) => {
 
   // Add each element
   sortedElements.forEach((element) => {
-    const { type, content, x, y, style, src, alt, href, target } = element;
+    const { elementType, type, content, x, y, style, src, alt, href, target } = element;
     const positionStyle = `style="position: absolute; left: ${x}px; top: ${y}px;"`;
-    const tailwindClasses = stylesToTailwind(type, style);
+    const tailwindClasses = stylesToTailwind(elementType, style);
 
-    switch (type) {
+    switch (elementType) {
       case "heading":
         html += `    <h2 class="${tailwindClasses}" ${positionStyle}>${content}</h2>\n`;
         break;
+        case "input":
+          html += `    <input type="${type}" class="${tailwindClasses}" ${positionStyle} value="${content}"/>\n`;
+          break;
         case "link":
           html += `    <a href="${href}" target="${target}" class="${tailwindClasses} underline" ${positionStyle}>${content}</a>\n`;
           break;
