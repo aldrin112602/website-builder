@@ -5,8 +5,12 @@ const getDefaultContent = (elementType) => {
       return "Heading";
     case "text":
       return "Text";
-      case "link":
-        return "Link";
+    case "link":
+      return "Link";
+    case "input":
+      return "Input";
+    case "textarea":
+      return "Textarea";
     case "paragraph":
       return "Paragraph";
     case "button":

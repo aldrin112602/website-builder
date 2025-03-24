@@ -9,6 +9,7 @@ const components = [
   // { elementType: "container", label: "Container", icon: "fa-solid fa-square-full" },
   { elementType: "video", label: "Video", icon: "fa-solid fa-clapperboard" },
   { elementType: "input", label: "Input", icon: "fa-regular fa-square-full" },
+  { elementType: "textarea", label: "Textarea", icon: "fa-regular fa-square-full" },
 ];
 
 export { components };

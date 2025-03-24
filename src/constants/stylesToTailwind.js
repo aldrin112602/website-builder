@@ -26,6 +26,9 @@ const stylesToTailwind = (elementType, style) => {
       case "input":
         classes.push("border border-slate-100 px-3 py-2 rounded");
         break;
+        case "textarea":
+          classes.push("border border-slate-100 px-3 py-2 rounded");
+          break;
     case "video":
       classes.push("bg-gray-300");
       break;

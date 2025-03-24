@@ -50,7 +50,7 @@ const WebsiteBuilder = () => {
           : {}),
         ...(elementType === "video" ? { src: VideoPlaceholder } : {}),
         ...(elementType === "link" ? { href: "#", target: "_self" } : {}),
-        ...(elementType === "input" ? { value: "Input Value" } : {}),
+        ...(elementType === "input" ? { value: "Input Value" } : {}), 
       };
 
       setElements([...elements, newElement]);

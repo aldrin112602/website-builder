@@ -10,7 +10,7 @@ const RenderElement = ({
 }) => {
   const {
     id,
-    type='text',
+    type = "text",
     elementType,
     content,
     style,
@@ -22,8 +22,8 @@ const RenderElement = ({
     target,
     width,
     height,
-    backgroundColor = "#999",
-    color = "#000",
+    backgroundColor = "#999999",
+    color = "#000000",
     fontSize,
   } = element;
   const elementStyle = {
@@ -58,7 +58,9 @@ const RenderElement = ({
     case "heading":
       return <h2 {...commonProps}>{content}</h2>;
     case "input":
-      return <input type={type} {...commonProps} />;
+      return <input type={type} value={content} {...commonProps} />;
+    case "textarea":
+      return <textarea {...commonProps} value={content}></textarea>;
     case "text":
       return <span {...commonProps}>{content}</span>;
     case "paragraph":

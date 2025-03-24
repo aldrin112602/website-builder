@@ -61,7 +61,7 @@ const RenderPropertiesPanel = ({
         </button>
         <h3 className="text-lg font-medium mb-4">Properties</h3>
 
-        {!["image", "video", "input"].includes(selectedElement.elementType) && (
+        {!["image", "video"].includes(selectedElement.elementType) && (
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Content</label>
             <input
@@ -183,7 +183,7 @@ const RenderPropertiesPanel = ({
             <label className="block text-sm font-medium mb-1">Text Color</label>
             <input
               type="color"
-              value={selectedElement.color || "#000"}
+              value={selectedElement.color || "#000000"}
               onChange={(e) => {
                 const color = e.target.value;
                 const updatedElements = elements.map((el) =>

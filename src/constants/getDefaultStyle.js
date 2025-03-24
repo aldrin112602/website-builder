@@ -19,6 +19,15 @@ const getDefaultStyle = (elementType) => {
           border: "1px solid #9ca3af",
           borderRadius: "4px",
         };
+        case "textarea":
+          return {
+            ...baseStyle,
+            color: "#374151",
+            fontSize: "16px",
+            padding: "8px",
+            border: "1px solid #9ca3af",
+            borderRadius: "4px",
+          };
     case "paragraph":
       return {
         ...baseStyle,
